@@ -1,0 +1,80 @@
+.login-form {
+  padding: 4rem 1rem;
+
+  mat-card {
+    max-width: 300px;
+    margin: 2rem auto;
+    text-align: center;
+    height: 350px;
+  }
+
+  .full-width-input,
+  button {
+    width: 100%;
+  }
+
+  .separator {
+    margin-bottom: 2rem;
+  }
+}
+
+
+.boton1 {
+
+  text-align: center;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: background-position 0.5s;
+  background: linear-gradient(to right, rgb(215, 210, 210) 50%, #f6be7d 50%);
+  background-size: 200%;
+  background-position: left;
+  transition: background-position 0.5s;
+  font-family: "Trebuchet MS"
+    /*"Trebuchet MS""*/
+  ;
+  font-size: 14px;
+  width: 130px;
+  gap: 2rem;
+
+}
+
+
+
+.boton1:hover {
+  background-position: right;
+  color: rgb(13, 19, 202);
+
+}
+
+
+.boton2 {
+
+  text-align: center;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: background-position 0.5s;
+  background: linear-gradient(to left, rgb(215, 210, 210) 50%, #95f289 50%);
+  background-size: 200%;
+  background-position: right;
+  transition: background-position 0.5s;
+  font-family: "Trebuchet MS"
+    /*"Trebuchet MS""*/
+  ;
+  font-size: 14px;
+  width: 130px;
+
+}
+
+.boton2:hover {
+  background-position: left;
+  color: rgb(13, 19, 202);
+
+}

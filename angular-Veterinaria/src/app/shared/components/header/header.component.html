@@ -1,0 +1,179 @@
+<!-- <header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a
+        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+        href="home"
+        >SysBitHomeServices
+
+        <svg
+          class="bi me-2"
+          width="40"
+          height="32"
+          role="img"
+          aria-label="Bootstrap"
+        >
+          <use xlink:href="#bootstrap" />
+        </svg>
+      </a>
+      <ng-container >
+        <div class="text-end">
+          <button
+            type="button"
+            class="btn btn-outline-light me-2"
+            [routerLink]="['/iniciar-sesion']"
+            routerLinkActive="router-link-active"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            [routerLink]="['/registrarse']"
+            routerLinkActive="router-link-active me-2"
+          >
+            Registrarse
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #logOutTemplate>
+        <button
+          type="button"
+          class="btn btn-primary"
+
+          [routerLink]="['/iniciar-sesion']"
+          routerLinkActive="router-link-active me-1"
+        >
+          Cerrar Sesión
+        </button>
+        <ul
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+        >
+          <li>
+            <a
+              class="nav-link px-1 text-white"
+              aria-current="page"
+              [routerLink]="['/servicios']"
+              routerLinkActive="router-link-active"
+              >Servicios</a
+            >
+          </li>
+          <li>
+            <a
+              class="nav-link px-1 text-white"
+              [routerLink]="['/localizacion']"
+              routerLinkActive="router-link-active"
+              >Localización</a
+            >
+          </li>
+          <!-- <li>
+            <a
+              [routerLink]="['/about']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-2 text-white"
+              >Acerca de Nosotros</a
+            >
+          </li> -->
+<!-- <li>
+            <a
+              class="nav-link px-1 text-white"
+              aria-current="page"
+              [routerLink]="['/tyc']"
+              routerLinkActive="router-link-active"
+              >Términos y condiciones</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/pagos']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-1 text-white"
+              >Pagos</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/registro']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-1 text-white"
+              >Registro</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/administradores']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-1 text-white"
+              >Administradores</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/colaboradores']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-1 text-white"
+              >Colaboradores</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/contratantes']"
+              routerLinkActive="router-link-active me-2"
+              class="nav-link px-1 text-white"
+              >Contratantes</a
+            >
+          </li>
+        </ul>
+
+        <div class="dropdown text-end">
+          <a
+            href="#"
+            class="d-block link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt="mdo"
+              width="32"
+              height="32"
+              class="rounded-circle"
+            />
+          </a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</header> -->
+
+<mat-toolbar class="p-3 bg-dark text-white">
+  <div
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-finally"
+  >
+    <ng-container *ngIf="!isAdmin; else viewAdmin">
+      <span>Sistema de veterinaria</span>
+      <span class="spacer"></span>
+      <a
+        *ngIf="!isLogged; else viewLogout"
+        mat-button
+        routerLink="/iniciar-sesion"
+        >Login</a
+      >
+      <a mat-button routerLink="/admin">Admin</a>
+    </ng-container>
+  </div>
+</mat-toolbar>
+
+<ng-template #viewLogout>
+  <a mat-button (click)="onLogout()">Cerrar sesión</a>
+</ng-template>
+
+<ng-template #viewAdmin>
+  <button mat-icon-button (click)="onToggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="spacer"></span>
+</ng-template>
