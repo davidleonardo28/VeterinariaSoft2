@@ -18,9 +18,7 @@
   }
 }
 
-
 .boton1 {
-
   text-align: center;
   border-radius: 6px;
   padding-top: 10px;
@@ -33,26 +31,18 @@
   background-size: 200%;
   background-position: left;
   transition: background-position 0.5s;
-  font-family: "Trebuchet MS"
-    /*"Trebuchet MS""*/
-  ;
+  font-family: "Trebuchet MS" /*"Trebuchet MS""*/;
   font-size: 14px;
   width: 130px;
   gap: 2rem;
-
 }
-
-
 
 .boton1:hover {
   background-position: right;
   color: rgb(13, 19, 202);
-
 }
 
-
 .boton2 {
-
   text-align: center;
   border-radius: 6px;
   padding-top: 10px;
@@ -65,16 +55,36 @@
   background-size: 200%;
   background-position: right;
   transition: background-position 0.5s;
-  font-family: "Trebuchet MS"
-    /*"Trebuchet MS""*/
-  ;
+  font-family: "Trebuchet MS" /*"Trebuchet MS""*/;
   font-size: 14px;
   width: 130px;
-
 }
 
 .boton2:hover {
   background-position: left;
   color: rgb(13, 19, 202);
+}
 
+.flexbox-container {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flexbox-container > div {
+  width: 50%;
+  padding: 10px;
+}
+
+.flexbox-container > div:first-child {
+  margin-right: 20px;
+}
+
+.spaceimg {
+  display: block;
+  width: 75%;
+  height: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5rem;
 }
