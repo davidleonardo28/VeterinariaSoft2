@@ -2,19 +2,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin.component';
+import { ClientesRoutingModule } from './clientes-routing.module';
+import { ClientesComponent } from './clientes.component';
 import { MaterialModule } from '@app/material.module';
+import { ComponentsModule } from '@app/components/components.module';
 
 @NgModule({
   declarations: [
-    AdminComponent,
+    ClientesComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
+    ClientesRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    ComponentsModule,
   ],
 })
-export class AdminModule {}
+export class ClientesModule {}
