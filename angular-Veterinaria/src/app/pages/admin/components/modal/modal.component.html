@@ -1,0 +1,59 @@
+{{ data.user | json }}
+
+<h2 mat-dialog-title>{{ data?.title }}</h2>
+
+<mat-dialog-content> </mat-dialog-content>
+<div class="modal-form">
+  <form [formGroup]="userForm.baseForm">
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Ingresa el Username</mat-label>
+      <input
+        formControlName="username"
+        matInput
+        placeholder="Username"
+        required
+      />
+      <mat-error *ngIf="checkField('username')">
+        {{ userForm.errorMessage }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Ingresa el Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        placeholder="Password"
+        required
+      />
+      <mat-error *ngIf="checkField('password')">
+        {{ userForm.errorMessage }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Seleciona el Rol</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="admin">Administrador</mat-option>
+        <mat-option value="veterinario">Veterinario</mat-option>
+        <mat-option value="cliente">Cliente</mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkField('role')">
+        {{ userForm.errorMessage }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align-items="end">
+  <button
+    mat-raised-button
+    [mat-dialog-close]="true"
+    (click)="onSave()"
+    class="btn btn-success"
+  >
+    Registrar Usuario
+  </button>
+  <button mat-button mat-dialog-close="" class="btn btn-secondary">
+    Cancelar
+  </button>
+</mat-dialog-actions>
