@@ -15,6 +15,8 @@ enum Action {
 })
 export class ModalComponent implements OnInit {
   actionTODO = Action.NEW;
+  showPasswordField = true;
+  hide = true;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public userForm: BaseFormUser,
@@ -24,6 +26,10 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data?.user.hasOwnProperty('id')) {
       this.actionTODO = Action.EDIT;
+      this.showPasswordField = false;
+      this.userForm.baseForm.get('password').setValidators(null);
+      this.userForm.baseForm.updateValueAndValidity();
+      this.data.title = 'Editar Usuario';
       this.pathFormData();
     }
   }
@@ -31,18 +37,15 @@ export class ModalComponent implements OnInit {
   onSave(): void {
     const formValue = this.userForm.baseForm.value;
     if (this.actionTODO === Action.NEW) {
-      //Nuevo
       this.userSvc.new(formValue).subscribe((res) => {
-        console.log('New', res);
+        console.log('New ', res);
       });
     } else {
-      //Editar
       const userId = this.data?.user?.id;
       this.userSvc.update(userId, formValue).subscribe((res) => {
         console.log('Update', res);
       });
     }
-    console.log('Save');
   }
 
   checkField(field: string): boolean {

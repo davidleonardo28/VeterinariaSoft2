@@ -1,5 +1,3 @@
-{{ data.user | json }}
-
 <h2 mat-dialog-title>{{ data?.title }}</h2>
 
 <mat-dialog-content> </mat-dialog-content>
@@ -18,14 +16,22 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width-input" appearance="outline">
+    <mat-form-field
+      class="full-width-input"
+      appearance="outline"
+      *ngIf="showPasswordField"
+    >
       <mat-label>Ingresa el Password</mat-label>
       <input
+        [type]="hide ? 'password' : 'text'"
         formControlName="password"
         matInput
         placeholder="Password"
         required
       />
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
       <mat-error *ngIf="checkField('password')">
         {{ userForm.errorMessage }}
       </mat-error>
@@ -50,8 +56,10 @@
     [mat-dialog-close]="true"
     (click)="onSave()"
     class="btn btn-success"
+    ckdFocusInitial
+    [disabled]="!userForm.baseForm.valid"
   >
-    Registrar Usuario
+    Guardar Usuario
   </button>
   <button mat-button mat-dialog-close="" class="btn btn-secondary">
     Cancelar

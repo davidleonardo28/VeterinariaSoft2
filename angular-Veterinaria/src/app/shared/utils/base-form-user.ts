@@ -12,7 +12,7 @@ export class BaseFormUser {
       '',
       [Validators.required, Validators.pattern(this.isValidEmail)],
     ],
-    password: ['', [Validators.required, Validators.minLength(5)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     role: ['', [Validators.required]],
   });
 
