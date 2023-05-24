@@ -8,7 +8,7 @@ import {
   EventEmitter,
   OnDestroy,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -17,17 +17,37 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isAdmin = false;
+  isAdmin: string = null!;
+  isVeterinario: string = null!;
   isLogged = false;
-  @Output() toggleSidenav = new EventEmitter<void>();
+
+  private subscription: Subscription = new Subscription();
+  private destroy$ = new EventEmitter<void>();
+
+  // @Output() toggleSidenav = new EventEmitter<void>();
+
+  @Output() toggleSidenav: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private authSvc: AuthService) {}
 
   ngOnInit(): void {
-    this.authSvc.isLogged.subscribe((res) => (this.isLogged = res));
+    this.authSvc.isLogged
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => (this.isLogged = res));
+
+    this.authSvc.isVeterinario$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => (this.isVeterinario = res));
+
+    this.authSvc.isAdmin$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => (this.isAdmin = res));
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   onToggleSidenav(): void {
     this.toggleSidenav.emit();
