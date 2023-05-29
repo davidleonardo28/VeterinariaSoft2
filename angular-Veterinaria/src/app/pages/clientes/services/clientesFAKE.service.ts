@@ -66,30 +66,35 @@ export class ClientesServiceFAKE {
     nombre: "Alex",
     apellido: "Diaz",
     correo: "Alex@gmail.com",
+    direccion: "Calle 10 # 23 - 35",
     nombreMascota: "Lukas",
   }, {
     id_usuario: 2,
     nombre: "Alejandro",
     apellido: "Hernandez",
     correo: "Alejandro@gmail.com",
+    direccion: "Carrera 32 # 15 - 86",
     nombreMascota: "Rex",
   }, {
     id_usuario: 3,
     nombre: "Juana",
     apellido: "Perez",
     correo: "Juana@gmail.com",
+    direccion: "Diagonal 85 # 15 - 61",
     nombreMascota: "Lulu",
   }, {
     id_usuario: 4,
     nombre: "Marcos",
     apellido: "Gomez",
     correo: "Marcos@gmail.com",
+    direccion: "Avenida Siempreviva 742",
     nombreMascota: "Rocky",
   }, {
     id_usuario: 5,
     nombre: "Luisa",
     apellido: "Bonza",
     correo: "Luisa@gmail.com",
+    direccion: "Transversal 51 # 75 - 42",
     nombreMascota: "Luna",
   }]
 
