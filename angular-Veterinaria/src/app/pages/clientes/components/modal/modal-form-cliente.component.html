@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{ action == "new" ? "Agregar cliente" : "Editar cliente"}}</h2>
+<mat-dialog-content>
+    <form [formGroup]="formaCliente">
+        <mat-form-field class="full-width-input">
+            <mat-label>ID</mat-label>
+            <input id="id_usuario" formControlName="id_usuario" matInput placeholder="ID" readonly="true"/>
+            <mat-error *ngIf="id_usuario.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+            <mat-label>Nombre</mat-label>
+            <input id="nombre" formControlName="nombre" matInput placeholder="Nombre" required />
+            <mat-error *ngIf="nombre.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+            <mat-label>Apellido</mat-label>
+            <input id="apellido" formControlName="apellido" matInput placeholder="Apellido" required />
+            <mat-error *ngIf="apellido.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+            <mat-label>Correo</mat-label>
+            <input id="correo" formControlName="correo" matInput placeholder="Correo" required />
+            <mat-error *ngIf="correo.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+            <mat-label>Dirección</mat-label>
+            <input id="direccion" formControlName="direccion" matInput placeholder="Dirección" required />
+            <mat-error *ngIf="direccion.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+            <mat-label>Nombre Mascota</mat-label>
+            <input id="nombreMascota" formControlName="nombreMascota" matInput placeholder="Nombre Mascota" required />
+            <mat-error *ngIf="nombreMascota.invalid">Dato requerido
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" color="primary" [disabled]="formaCliente.invalid"
+        (click)="onSave()">Guardar</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

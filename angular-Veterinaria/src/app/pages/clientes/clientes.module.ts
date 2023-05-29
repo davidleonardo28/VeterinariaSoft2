@@ -5,18 +5,18 @@ import { CommonModule } from '@angular/common';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesComponent } from './clientes.component';
 import { MaterialModule } from '@app/material.module';
-import { ComponentsModule } from '@app/components/components.module';
+import { ModalFormClientComponent } from './components/modal/modal-form-cliente.component';
 
 @NgModule({
-  declarations: [
-    ClientesComponent,
-  ],
   imports: [
     CommonModule,
     ClientesRoutingModule,
     MaterialModule,
-    ReactiveFormsModule,
-    ComponentsModule,
+    ReactiveFormsModule
+  ],
+  declarations: [
+    ClientesComponent,
+    ModalFormClientComponent
   ],
 })
 export class ClientesModule {}
