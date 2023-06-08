@@ -1,36 +1,28 @@
 <mat-toolbar class="p-3 bg-dark text-white">
-  <div
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-finally"
-  >
-    <ng-container *ngIf="isAdmin === 'admin'">
+  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-finally">
+    <ng-container *ngIf="isAdmin">
       <button mat-icon-button (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
     </ng-container>
-    <span>Sistema de veterinaria</span>
+    <img style="width: 20px; height: auto" src="/assets/img/Icon.png" />
+    <a routerLink="" class="ms-1"> <span>Sistema de veterinaria</span></a>
     <span class="spacer"></span>
 
-    <a
-      *ngIf="!isLogged; else viewLogout"
-      mat-button
-      routerLink="/iniciar-sesion"
-      >Login</a
-    >
-    <!-- <a *ngIf="isAdmin === 'admin'" mat-button routerLink="/admin">Admin</a> -->
+    <a *ngIf="isLogged" mat-button routerLink="/iniciar-sesion">Login</a>
+    <a *ngIf="!isLogged" mat-button (click)="onLogout()">Cerrar sesión</a>
 
-    <a *ngIf="isAdmin === 'admin'" mat-button routerLink="/admin">
-      <span class="nav-link">Dashboard</span>
+    <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin">Admin</a>
+
+    <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin/clientes">
+      <span class="nav-link">Clientes</span>
     </a>
-    <a *ngIf="isAdmin === 'admin'" mat-button routerLink="/admin/users">
+    <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin/users">
       <span class="nav-link">Usarios Registrados</span>
     </a>
 
-    <a
-      *ngIf="isVeterinario === 'veterinario' || isAdmin === 'admin'"
-      mat-button
-      routerLink="/clientes"
-      >Clientes</a
-    >
+    <a *ngIf="isLogged && !isAdmin" mat-button routerLink="/cliente">Cliente</a>
+
     <!-- <a *ngIf="isAdmin === 'admin'" mat-button> -->
     <!-- <mat-icon>exit_to_app</mat-icon> -->
     <!-- <span class="nav-link">Exit</span>
@@ -39,5 +31,5 @@
 </mat-toolbar>
 
 <ng-template #viewLogout>
-  <a mat-button (click)="onLogout()">Cerrar sesión</a>
+  
 </ng-template>

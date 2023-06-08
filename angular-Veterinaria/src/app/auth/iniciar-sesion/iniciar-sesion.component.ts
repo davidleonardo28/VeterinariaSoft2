@@ -6,6 +6,9 @@ import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import Swal from 'sweetalert2';
+import { ClientesServiceFAKE } from '@app/pages/admin/clientes/services/clientesFAKE.service';
+import { Cliente } from '@app/shared/models/client.interface';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -14,7 +17,8 @@ import Swal from 'sweetalert2';
 })
 export class IniciarSesionComponent implements OnInit {
   private isValidEmail =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  clientes: Cliente[] = [];
 
   hide = true;
   loginForm = this.fb.group({
@@ -28,8 +32,11 @@ export class IniciarSesionComponent implements OnInit {
   constructor(
     private authSvc: AuthService,
     private router: Router,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private clienteService: ClientesServiceFAKE,
+  ) {
+    this.obtenerClientes()
+  }
 
   ngOnInit(): void {
     // const userData = {
@@ -39,26 +46,61 @@ export class IniciarSesionComponent implements OnInit {
     // this.authSvc.login(userData).subscribe((res) => console.log('Login'));
   }
 
-  ngOnDestroy(): void {}
-
-  onLogin(): void {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const formValue = this.loginForm.value;
-    this.authSvc.login(formValue).subscribe((res) => {
-      if (res) {
-        this.router.navigate(['']);
+  private obtenerClientes() {
+    this.clienteService.getAll().subscribe({
+      next: (clientes) => {
+        this.clientes = clientes;
       }
     });
+  }
+
+  ngOnDestroy(): void { }
+
+  onLogin(): void {
+    const formValue = this.loginForm.value;
+    if (formValue.username == "admin@gmail.com" && formValue.password == "123456789") {
+      localStorage.setItem("correo", formValue.username);
+      this.router.navigate(['admin']);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      return;
+    }
+
+    if (this.clientes.some(c => c.correo == formValue.username) && formValue.password == "123456789") {
+      localStorage.setItem("correo", formValue.username);
+      this.router.navigate(['cliente'], { state: { correo: formValue.username } });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000); return;
+    }
+
     Swal.fire({
       position: 'center',
-      icon: 'success',
-      title: 'Login éxitoso',
+      icon: 'error',
+      title: 'Correo y clave incorrectos',
       showConfirmButton: false,
       timer: 2500,
     });
   }
+
+  // onLogin(): void {
+  //   if (this.loginForm.invalid) {
+  //     return;
+  //   }
+  //   this.authSvc.login(formValue).subscribe((res) => {
+  //     if (res) {
+  //       this.router.navigate(['']);
+  //     }
+  //   });
+  //   Swal.fire({
+  //     position: 'center',
+  //     icon: 'success',
+  //     title: 'Login éxitoso',
+  //     showConfirmButton: false,
+  //     timer: 2500,
+  //   });
+  // }
 
   getErrorMessages(field: string) {
     let message;

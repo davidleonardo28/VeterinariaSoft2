@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@app/auth/auth.service';
+import { ClientesServiceFAKE } from '../admin/clientes/services/clientesFAKE.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,29 @@ import { AuthService } from '@app/auth/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(public authSvc: AuthService) {}
+  imageObject: Array<object> = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private clienteService: ClientesServiceFAKE
+  ) { }
+
+  ngOnInit(): void {
+    this.getAll();
+  }
+
+  private getAll() {
+    this.clienteService.getAll().subscribe({
+      next: (clientes) => {
+        this.imageObject = clientes.map(c => {
+          return {
+            image: c.image,
+            thumbImage: c.image,
+            title: c.nombreMascota,
+            alt: c.nombreMascota
+          }
+        });
+      }
+    });
+  }
+
 }

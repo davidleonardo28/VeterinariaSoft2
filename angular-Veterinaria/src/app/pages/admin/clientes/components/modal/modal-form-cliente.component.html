@@ -3,42 +3,42 @@
     <form [formGroup]="formaCliente">
         <mat-form-field class="full-width-input">
             <mat-label>ID</mat-label>
-            <input id="id_usuario" formControlName="id_usuario" matInput placeholder="ID" readonly="true"/>
+            <input type="text" id="id_usuario" formControlName="id_usuario" matInput placeholder="ID" readonly="true"/>
             <mat-error *ngIf="id_usuario.invalid">Dato requerido
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input">
             <mat-label>Nombre</mat-label>
-            <input id="nombre" formControlName="nombre" matInput placeholder="Nombre" required />
+            <input type="text" id="nombre" formControlName="nombre" matInput placeholder="Nombre" maxlength="45" required />
             <mat-error *ngIf="nombre.invalid">Dato requerido
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input">
-            <mat-label>Apellido</mat-label>
-            <input id="apellido" formControlName="apellido" matInput placeholder="Apellido" required />
-            <mat-error *ngIf="apellido.invalid">Dato requerido
+            <mat-label>Num. Celular</mat-label>
+            <input type="number" id="celular" formControlName="celular" matInput placeholder="Num. Celular" maxlength="10" required />
+            <mat-error *ngIf="celular.invalid">Dato requerido
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input">
             <mat-label>Correo</mat-label>
-            <input id="correo" formControlName="correo" matInput placeholder="Correo" required />
-            <mat-error *ngIf="correo.invalid">Dato requerido
+            <input type="text" id="correo" formControlName="correo" matInput placeholder="Correo" maxlength="45" [pattern]="isValidEmail" required />
+            <mat-error *ngIf="correo.invalid">{{correo.value ? "Correo inválido" : "Dato requerido"}}
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input">
             <mat-label>Dirección</mat-label>
-            <input id="direccion" formControlName="direccion" matInput placeholder="Dirección" required />
+            <input type="text" id="direccion" formControlName="direccion" matInput placeholder="Dirección" maxlength="45" required />
             <mat-error *ngIf="direccion.invalid">Dato requerido
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input">
             <mat-label>Nombre Mascota</mat-label>
-            <input id="nombreMascota" formControlName="nombreMascota" matInput placeholder="Nombre Mascota" required />
+            <input type="text" id="nombreMascota" formControlName="nombreMascota" matInput placeholder="Nombre Mascota" maxlength="45" required />
             <mat-error *ngIf="nombreMascota.invalid">Dato requerido
             </mat-error>
         </mat-form-field>

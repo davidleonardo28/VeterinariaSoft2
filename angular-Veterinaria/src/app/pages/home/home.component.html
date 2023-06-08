@@ -1,2 +1,29 @@
-<h1 *ngIf="authSvc.isLogged | async">Bienvenido, User</h1>
-<h2>Home works!</h2>
+<div class="container">
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img style="max-width: 150px; max-height: 250px" src="/assets/img/Logo.jpeg" />
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <h2>VET CENTER</h2>
+                    <p>VET CENTER cuenta con un excelente equipo de profesionales de médicos veterinarios altamente
+                        calificados en el sector de la medicina para animales, capacitados de ofrecer una calidad de
+                        vida a sus mascotas llegando a los diagnósticos que permitirán enfocar los tratamientos de
+                        manera eficiente y oportuna haciendo seguimiento a la historia clínica para recomendar los
+                        procesos adecuados. En nuestras 8 sedes podrás llevar a tu mascota para que sea atendida por
+                        nuestros profesionales en medicina animal ya sea para procedimientos de rutina como
+                        desparasitar, limpieza de oidos, corte de uñas, vacunas así como procedimientos de emergencia o
+                        tratamientos especiales por enfermedad.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="text-center">MASCOTAS ATENDIDAS</h2>
+            <ng-image-slider [images]="imageObject" [imagePopup]="false" [infinite]="true" [autoSlide]="false"
+                [animationSpeed]="2" [imageSize]="{height: '300px', width: '300px', space: 7}"></ng-image-slider>
+        </div>
+    </div>
+</div>

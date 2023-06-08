@@ -14,12 +14,12 @@
           <h1>LOGIN</h1>
           <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <mat-form-field class="full-width-input" appearance="outline">
-              <mat-label>Username</mat-label>
+              <mat-label>Correo</mat-label>
               <input
                 text="text"
                 formControlName="username"
                 matInput
-                placeholder="Username"
+                placeholder="Correo"
                 required
               />
               <mat-error *ngIf="isValidField('username')">

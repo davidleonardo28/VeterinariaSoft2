@@ -14,13 +14,15 @@ enum Action {
     styleUrls: ['./modal-form-cliente.component.css']
 })
 export class ModalFormClientComponent implements OnInit {
+    public isValidEmail =
+    /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
     action = Action.NEW;
 
     public formaCliente = this.fb.group({
         id_usuario: [0],
         nombre: ['', Validators.required],
-        apellido: ['', Validators.required],
+        celular: ['', Validators.required],
         correo: ['', Validators.required],
         direccion: ['', Validators.required],
         nombreMascota: ['', Validators.required],
@@ -28,7 +30,7 @@ export class ModalFormClientComponent implements OnInit {
 
     get id_usuario() { return this.formaCliente.get('id_usuario'); }
     get nombre() { return this.formaCliente.get('nombre'); }
-    get apellido() { return this.formaCliente.get('apellido'); }
+    get celular() { return this.formaCliente.get('celular'); }
     get correo() { return this.formaCliente.get('correo'); }
     get direccion() { return this.formaCliente.get('direccion'); }
     get nombreMascota() { return this.formaCliente.get('nombreMascota'); }
@@ -70,7 +72,7 @@ export class ModalFormClientComponent implements OnInit {
         this.formaCliente.patchValue({
             id_usuario: this.data?.id_usuario,
             nombre: this.data?.nombre,
-            apellido: this.data?.apellido,
+            celular: this.data?.celular,
             correo: this.data?.correo,
             direccion: this.data?.direccion,
             nombreMascota: this.data?.nombreMascota,

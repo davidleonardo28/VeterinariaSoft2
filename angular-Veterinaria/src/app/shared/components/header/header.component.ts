@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isAdmin: string = null!;
+  isAdmin = false;
   isVeterinario: string = null!;
   isLogged = false;
 
@@ -28,20 +29,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Output() toggleSidenav: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private authSvc: AuthService) {}
+  constructor(private authSvc: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.authSvc.isLogged
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => (this.isLogged = res));
+    var correo = localStorage.getItem("correo");
 
-    this.authSvc.isVeterinario$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => (this.isVeterinario = res));
+    if (correo != "") {
+      this.isLogged = true;
+      if (correo == "admin@gmail.com") this.isAdmin = true;
+      else { this.isAdmin = false; }
+    }
+    else {
+      this.isLogged = false;
+      this.isAdmin = false;
+    }
 
-    this.authSvc.isAdmin$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => (this.isAdmin = res));
+    // this.authSvc.isLogged
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((res) => (this.isLogged = res));
+
+    // this.authSvc.isVeterinario$
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((res) => (this.isVeterinario = res));
+
+    // this.authSvc.isAdmin$
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((res) => (this.isAdmin = res));
   }
 
   ngOnDestroy(): void {
@@ -54,6 +68,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout(): void {
-    this.authSvc.logout();
+    localStorage.setItem("correo", "");
+    this.router.navigate(['']);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+    // this.authSvc.logout();
   }
 }

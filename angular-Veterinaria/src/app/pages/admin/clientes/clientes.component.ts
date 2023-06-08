@@ -24,10 +24,10 @@ export class ClientesComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.getAll();
+    this.obtenerClientes();
   }
 
-  private getAll() {
+  private obtenerClientes() {
     this.clienteService.getAll().subscribe({
       next: (clientes) => {
         this.dataSource.data = clientes;
@@ -46,7 +46,7 @@ export class ClientesComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAll();
+      this.obtenerClientes();
       if (result) this.snackBar.open('Cliente creado exitosamente.', null, { verticalPosition: "top", horizontalPosition: "right", panelClass: ["text-white", "bg-success"] });
     });
   }
@@ -58,7 +58,7 @@ export class ClientesComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAll();
+      this.obtenerClientes();
       if (result) this.snackBar.open('Cliente editado exitosamente.', null, { verticalPosition: "top", horizontalPosition: "right", panelClass: ["text-white", "bg-success"] });
     });
   }
@@ -67,7 +67,7 @@ export class ClientesComponent implements AfterViewInit, OnInit {
     if (window.confirm('¿Esta seguro de eliminar a este cliente?')) {
       this.clienteService.delete(cliente.id_usuario).subscribe({
         next: () => {
-          this.getAll();
+          this.obtenerClientes();
           this.snackBar.open('Cliente borrado exitosamente.', null, { verticalPosition: "top", horizontalPosition: "right", panelClass: ["text-white", "bg-success"] });
         }
       });

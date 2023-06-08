@@ -37,9 +37,9 @@ const routes: Routes = [
       import('./pages/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 'clientes',
+    path: 'cliente',
     loadChildren: () =>
-      import('./pages/clientes/clientes.module').then((m) => m.ClientesModule),
+      import('./pages/cliente/cliente.module').then((m) => m.ClienteModule),
   },
 ];
 
