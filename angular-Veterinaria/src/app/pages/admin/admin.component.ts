@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
@@ -8,9 +9,14 @@ import { AuthService } from '@app/auth/auth.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public authSvc: AuthService) { }
+  constructor(public authSvc: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    var correo = localStorage.getItem("correo");
+    if (!correo) {
+      this.router.navigate(['']);
+    }
   }
 
 }

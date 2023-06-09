@@ -18,9 +18,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isAdmin = false;
+  public isAdmin = false;
+  public isLogged = false;
   isVeterinario: string = null!;
-  isLogged = false;
 
   private subscription: Subscription = new Subscription();
   private destroy$ = new EventEmitter<void>();

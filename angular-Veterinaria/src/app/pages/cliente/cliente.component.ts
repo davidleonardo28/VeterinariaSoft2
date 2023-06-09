@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '@app/shared/models/client.interface';
 import { switchMap } from 'rxjs';
 import { ClientesServiceFAKE } from '../admin/clientes/services/clientesFAKE.service';
@@ -15,7 +15,8 @@ export class ClienteComponent implements OnInit {
   public cliente: Cliente;
 
   constructor(private route: ActivatedRoute,
-    private clienteService: ClientesServiceFAKE
+    private clienteService: ClientesServiceFAKE,
+    private router: Router
   ) {
     this.obtenerClientes()
   }
@@ -32,7 +33,9 @@ export class ClienteComponent implements OnInit {
     // var correo = this.route.snapshot.paramMap.get('correo');
     var correo = localStorage.getItem("correo");
     this.cliente = this.clientes.find(c => c.correo == correo);
-    console.log(this.cliente);
+    if (!this.cliente) {
+      this.router.navigate(['']);
+    }
   }
 
 }

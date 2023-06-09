@@ -9,17 +9,17 @@
     <a routerLink="" class="ms-1"> <span>Sistema de veterinaria</span></a>
     <span class="spacer"></span>
 
-    <a *ngIf="isLogged" mat-button routerLink="/iniciar-sesion">Login</a>
-    <a *ngIf="!isLogged" mat-button (click)="onLogout()">Cerrar sesión</a>
+    <a *ngIf="!isLogged" mat-button routerLink="/iniciar-sesion">Login</a>
+    <a *ngIf="isLogged" mat-button (click)="onLogout()">Cerrar sesión</a>
 
     <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin">Admin</a>
 
     <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin/clientes">
       <span class="nav-link">Clientes</span>
     </a>
-    <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin/users">
+    <!-- <a *ngIf="isLogged && isAdmin" mat-button routerLink="/admin/users">
       <span class="nav-link">Usarios Registrados</span>
-    </a>
+    </a> -->
 
     <a *ngIf="isLogged && !isAdmin" mat-button routerLink="/cliente">Cliente</a>
 

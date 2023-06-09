@@ -26,22 +26,22 @@
                 <div class="row">
                     <div class="col">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><span class="fw-bold">Nombre: </span>{{cliente.nombre}}</li>
-                            <li class="list-group-item"><span class="fw-bold">Correo: </span>{{cliente.correo}}</li>
-                            <li class="list-group-item"><span class="fw-bold">Celular: </span>{{cliente.celular}}</li>
-                            <li class="list-group-item"><span class="fw-bold">Direccion: </span>{{cliente.direccion}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Nombre: </span>{{cliente?.nombre}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Correo: </span>{{cliente?.correo}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Celular: </span>{{cliente?.celular}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Direccion: </span>{{cliente?.direccion}}</li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><span class="fw-bold">Nombre mascota: </span>{{cliente.nombreMascota}}</li>
+                            <li class="list-group-item"><span class="fw-bold">Nombre mascota: </span>{{cliente?.nombreMascota}}</li>
                             <li class="list-group-item"><span class="fw-bold">Fecha llegada: </span>23/05/2023</li>
                             <li class="list-group-item"><span class="fw-bold">Fecha entrega: </span>03/06/2023</li>
                             <li class="list-group-item"><span class="fw-bold">Vacunas al día: </span>Si</li>
                         </ul>
                     </div>
                     <div class="col">
-                        <img [src]="cliente.image">
+                        <img [src]="cliente?.image">
                     </div>
                 </div>
             </div>
